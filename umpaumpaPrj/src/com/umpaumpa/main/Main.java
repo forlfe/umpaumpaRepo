@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.umpaumpa.member.MemberController;
 import com.umpaumpa.member.MemberVo;
+import com.umpaumpa.menu.Menu;
 
 public class Main {
 	
@@ -40,14 +41,46 @@ public class Main {
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀원하시는 번호를 선택해주세요.⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 				+ "");
+		Menu menu = new Menu();
 		while(true) {
-		System.out.println("1. 로그인");
-		System.out.println("2. 회원가입");
-		int input = sc.nextInt();
-		switch(input) {
-		case 1 : new MemberController().login(); break;
-		case 2 : new MemberController().join(); break;
-			}
+			//메뉴 보여주기
+			int input = menu.showMenu();
+			
+			//선택한 값에 따라 동작
+			switch(input) {
+			case 1:
+				new MemberController().login(); 
+				break;
+			case 2: 
+				new MemberController().join(); 
+				break;
+			case 3:
+				//나의 운동기록
+				break;
+			case 4: 
+				//소모칼로리 조회
+				break;
+			case 5: 
+				//팀가입하기
+				break;
+			case 6: 
+				//팀활동
+				break;
+			case 7: 
+				//자유게시판
+				break;
+			case 8: 
+				//마이페이지
+				break;
+			case 9: 
+				//관리자페이지
+				break;
+			case 0: 
+				//프로그램 종료
+				System.out.println("프로그램을 종료합니다.");
+				return;
+			}//switch
+			
 		}
 
 	}
