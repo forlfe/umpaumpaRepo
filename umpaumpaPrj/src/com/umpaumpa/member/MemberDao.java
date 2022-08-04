@@ -27,7 +27,7 @@ public class MemberDao {
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getName());
 			pstmt.setString(4, vo.getNick());
-			pstmt.setString(5, vo.getWeight());
+			pstmt.setDouble(5, vo.getWeight());
 			pstmt.setString(6, vo.getGender());
 			
 			result=pstmt.executeUpdate();
@@ -61,7 +61,7 @@ public class MemberDao {
 			String id = rs.getString("ID");
 			String name = rs.getString("NAME");
 			String nick = rs.getString("NICK");
-			String weight = rs.getString("WEIGHT");
+			double weight = rs.getDouble("WEIGHT");
 			String gender = rs.getString("GENDER");
 			
 			vo = new MemberVo();

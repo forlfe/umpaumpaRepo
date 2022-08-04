@@ -3,8 +3,11 @@ package com.umpaumpa.main;
 import java.util.Scanner;
 
 import com.umpaumpa.member.MemberController;
+import com.umpaumpa.member.MemberVo;
 
 public class Main {
+	
+	public static MemberVo loginMember;
 
 	public static void main(String[] args) {
 		
