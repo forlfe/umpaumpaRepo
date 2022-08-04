@@ -2,6 +2,8 @@ package com.umpaumpa.main;
 
 import java.util.Scanner;
 
+import com.umpaumpa.member.MemberController;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,8 +16,8 @@ public class Main {
 		System.out.println("2. 회원가입");
 		int input = sc.nextInt();
 		switch(input) {
-		case 1 : break;
-		case 2 : break;
+		case 1 : new MemberController().login(); break;
+		case 2 : new MemberController().join(); break;
 			}
 		}
 
