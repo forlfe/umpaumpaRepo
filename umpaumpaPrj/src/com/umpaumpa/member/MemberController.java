@@ -9,10 +9,10 @@ import com.umpaumpa.util.Inpututil;
 public class MemberController {
 	
 	public void login() {
-//		if(Main.loginmember!=null) {
-//			System.out.println("이미 로그인하셨습니다.");
-//			return;
-//		}												//로그인 시 로그인 화면 재진입 막음
+		if(Main.loginmember!=null) {
+			System.out.println("이미 로그인하셨습니다.");
+			return;
+		}												//로그인 시 로그인 화면 재진입 막음
 		System.out.println("로그인~~~");
 		MemberVo imfor=null;
 		
@@ -25,7 +25,7 @@ public class MemberController {
 			imfor=MemberDao.login(id, pwd);
 			if(vo!=null) {
 				System.out.println("로그인 성공!");
-				//Main.loginmember=imfor;				//로그인 시 해당 정보를 메인으로 전송
+				Main.loginMember=imfor;				//로그인 시 해당 정보를 메인으로 전송
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
