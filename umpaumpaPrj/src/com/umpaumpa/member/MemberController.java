@@ -49,7 +49,7 @@ public class MemberController {
 		System.out.println("닉네임 : ");
 		String nick = Inpututil.sc.nextLine();
 		System.out.println("몸무게 :");
-		String weight = Inpututil.sc.nextLine();
+		double weight = Inpututil.sc.nextInt();
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
 		
