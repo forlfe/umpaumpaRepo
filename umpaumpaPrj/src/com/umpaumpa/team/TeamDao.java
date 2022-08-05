@@ -9,11 +9,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.umpaumpa.common.JDBCTemplate;
+import com.umpaumpa.teamjoin.TeamJoinVo;
 
 public class TeamDao {
 	
 		
-		//SQL 담을 객체
+	public static int teamRank (TeamVo vo, Connection conn) throws Exception {
+		
+		int result = 0;
+		conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JDBCTemplate.getConnection();
+			String sql = "SELECT J.TEAM_CODE, J.TEAMNAME, R.KCAL FROM TEAM_JOIN J JOIN RECORD R ON J.MEMBER_NUM = R.NUM WHERE J.TEAM_CODE = ? ORDER BY R.KCAL DESC";
+			
+			//sql 담을 객체
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vo.getCode());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 		
 		
 	
@@ -33,14 +60,14 @@ public class TeamDao {
 			
 			while(rs.next()) {
 				int code = rs.getInt("CODE");
-				int num = rs.getInt("NUM");
+				int cap = rs.getInt("CAP");
 				String teamName = rs.getString("TEAM_NAME");
 				Timestamp tenrollDate = rs.getTimestamp("TENROLL_DATE");
 				int record = rs.getInt("RECORD");
 				
 				TeamVo vo = new TeamVo();
 				vo.setCode(code);
-				vo.setCap(num);
+				vo.setCap(cap);
 				vo.setTeamName(teamName);
 				vo.setTenrollDate(tenrollDate);
 				vo.setRecord(record);
