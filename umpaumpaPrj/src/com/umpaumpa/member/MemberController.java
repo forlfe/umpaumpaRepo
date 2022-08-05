@@ -55,6 +55,7 @@ public class MemberController {
 		double weight = Inpututil.sc.nextInt();
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
+		Inpututil.sc.nextLine();
 		
 		MemberVo vo = new MemberVo();
 		vo.setId(id);
