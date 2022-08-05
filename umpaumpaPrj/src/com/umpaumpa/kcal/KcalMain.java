@@ -6,7 +6,7 @@ public class KcalMain {
 
 	public static MemberVo loginMember;
 	
-	public static void main(String[] args) {
+	public static void main() {
 
 		
 		KcalMenu menu = new KcalMenu();
@@ -23,8 +23,7 @@ public class KcalMain {
 				new KcalCheck().CheckKcal(); 
 				break;
 			case 3://첫화면으로 돌아가기 //로그인 회원가입있는 페이지로 돌아가기
-				//~~~~
-				break;
+				return;
 			case 9: 
 				//프로그램 종료
 				System.out.println("프로그램을 종료합니다.");
