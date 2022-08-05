@@ -9,6 +9,11 @@ public class Menu {
 public int showMenu() {
 		
 		System.out.println("\n\n------ 메인메뉴 ------");
+		
+		System.out.println("원하시는 기능의 번호를 입력해주세요.");
+		System.out.print(">> 해당 번호 입력 : ");
+		System.out.println("");
+		
 		if(Main.loginMember != null) {
 			//로그인 O
 			System.out.println(Main.loginMember.getNick()+"님 환영합니다.");

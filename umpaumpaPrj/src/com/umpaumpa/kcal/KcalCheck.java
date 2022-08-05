@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 import com.umpaumpa.common.JDBCTemplate;
+import com.umpaumpa.main.Main;
 import com.umpaumpa.member.MemberVo;
 
 public class KcalCheck {
@@ -86,7 +87,7 @@ public int saveKcal(double Kresult, int min){
 	}else {
 		System.out.println("이전 화면으로 돌아갑니다.");//main화면으로
 		//+++++++++++이부분+++++++++++++//
-		return result;
+//		return;
 		
 	}
 	
@@ -100,9 +101,10 @@ public int saveKcal(double Kresult, int min){
 
 public static void CheckKcal() {
 	Scanner sc = new Scanner(System.in);
-	System.out.println("조회를 원하는 날짜를 입력해주세요.(예 : 20220725)");
+	System.out.println("조회를 원하는 날짜를 입력해주세요.(예 : 220725)");
 	System.out.println(">> 날짜를 입력해주세요 : ");
 	String date = sc.nextLine();
+	String no = Main.loginMember.getNo();
 	
 	 Connection conn = null;
 	 PreparedStatement pstmt = null;
@@ -112,11 +114,12 @@ public static void CheckKcal() {
 	 
 	try {
 		conn = JDBCTemplate.getConnection();
-		String sql = "SELECT KCAL FROM RECORD WHERE DATE >= ? AND DATE < ?";
+		String sql = "SELECT KCAL FROM RECORD WHERE SWIMDATE >= ? AND SWIMDATE < ? AND NUM = ?";
 		//++++++++++++++로그인한 아이디의 기록만 조회가 되도록해야함. 어떤걸로 중복 체크해야하는지??
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,date);
 		pstmt.setString(2,date);
+		pstmt.setString(3,no);
 		
 		rs = pstmt.executeQuery();
 		

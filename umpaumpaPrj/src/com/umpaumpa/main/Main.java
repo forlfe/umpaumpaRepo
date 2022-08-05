@@ -2,6 +2,7 @@ package com.umpaumpa.main;
 
 import java.util.Scanner;
 
+import com.umpaumpa.kcal.KcalMain;
 import com.umpaumpa.member.MemberController;
 import com.umpaumpa.member.MemberVo;
 import com.umpaumpa.menu.Menu;
@@ -58,7 +59,7 @@ public class Main {
 				//나의 운동기록
 				break;
 			case 4: 
-				//소모칼로리 조회
+				new KcalMain().main(); 
 				break;
 			case 5: 
 				//팀가입하기
