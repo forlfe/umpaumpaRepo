@@ -39,10 +39,7 @@ public class MemberController {
 	
 	public void join() {
 		System.out.println("회원가입~~~");
-		if(Main.loginMember!=null) {
-			System.out.println("이미 로그인하셨습니다.");
-			return;
-		}	
+		
 		
 		System.out.println("아이디 :");
 		String id = Inpututil.sc.nextLine();
