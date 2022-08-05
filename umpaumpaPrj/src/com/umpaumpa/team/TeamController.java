@@ -3,39 +3,63 @@ package com.umpaumpa.team;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.umpaumpa.teamjoin.TeamJoinVo;
 import com.umpaumpa.util.Inpututil;
 
 public class TeamController {
 	
-	public static void teamRank() {
+	public static int teamRank() {
 		
-		System.out.println("---- 나의 팀 순위 보기 ----");
+		//팀 보기 번호 출력
+		System.out.println("------- 나의 팀 순위 보기 -------");
+		System.out.println("==============================");
+		System.out.println("아래 보기 중 나의 팀 번호를 입력해주세요:D ");
 		System.out.println("1. 포세이돈");
 		System.out.println("2. 전현무");
 		System.out.println("3. 네레우스");
-		
 		System.out.println();
-		System.out.print("보기 중 나의 팀 번호를 입력해주세요 : ");
+		
+		//팀 번호 입력 받기
+		System.out.print("나의 팀 번호 : ");
 		int i = Inpututil.sc.nextInt();
 		
-		System.out.println("입력하신 번호가 맞습니까? => " + i);
-		System.out.print("Y / N : ");
-		String s1 = Inpututil.sc.nextLine();
+		//팀 번호 재확인 받기
 		
-		if(s1.equals("Y")) {
-			System.out.println("=== 나의 팀 순위는 ===");
-			System.out.println("-------------------");
+		if(i == 1) {
+			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 포세이돈");
+			System.out.print("Y / N : ");
+			String s1 = Inpututil.sc.nextLine();
 			
-			TeamDao td = new TeamDao();
+			if(s1.equals("Y")) {
+				System.out.println("=== 나의 팀 순위는 ===");
+				//1. 포세이돈 팀 순위 출력
+//				new TeamDao().teamRank();
+			}
+		}else if(i == 2) {
+			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 전현무");
+			System.out.print("Y / N : ");
+			String s1 = Inpututil.sc.nextLine();
 			
+			if(s1.equals("Y")) {
+				System.out.println("=== 나의 팀 순위는 ===");
+				//2. 전현무 팀 순위 출력
+				
+			}
+		}else if(i ==3) {
+			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 네레우스");
+			System.out.print("Y / N : ");
+			String s1 = Inpututil.sc.nextLine();
 			
-			
-			//레코드에서 
+			if(s1.equals("Y")) {
+				System.out.println("=== 나의 팀 순위는 ===");
+				//3. 네레우스 팀 순위 출력
+				
+			}
 		}else {
-			System.out.print("다시 번호를 입력해주세요 : ");
-			String s2 = Inpututil.sc.nextLine();
+			System.out.println("잘못 입력하였습니다ㅠ");
 		}
-		return;
+		
+		return i;
 		
 	}
 	public void searchTeamInfo() {
