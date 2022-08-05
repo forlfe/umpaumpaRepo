@@ -9,9 +9,12 @@ public class MemberVo {
 		super();
 	}
 
+	
+
 	public MemberVo(String no, String id, String pwd, String pwd2, String pwd3, String name, String adminId,
 			String adminPwd, String adminName, String nick, String nick2, String gender, double weight,
-			Timestamp enrollDate, Timestamp modifyDate, String quitYn, Timestamp editDate) {
+			Timestamp enrollDate, Timestamp modifyDate, String quitYn, Timestamp editDate, String title,
+			String content) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -30,7 +33,11 @@ public class MemberVo {
 		this.modifyDate = modifyDate;
 		this.quitYn = quitYn;
 		this.editDate = editDate;
+		this.title = title;
+		this.content = content;
 	}
+
+
 
 	private String no;
 	private String id;
@@ -49,6 +56,8 @@ public class MemberVo {
 	private Timestamp modifyDate;
 	private String quitYn;
 	private Timestamp editDate;
+	private String title;
+	private String content;
 	
 	public String getNo() {
 		return no;
@@ -186,13 +195,32 @@ public class MemberVo {
 		this.editDate = editDate;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVo [no=" + no + ", id=" + id + ", pwd=" + pwd + ", pwd2=" + pwd2 + ", pwd3=" + pwd3 + ", name="
 				+ name + ", adminId=" + adminId + ", adminPwd=" + adminPwd + ", adminName=" + adminName + ", nick="
 				+ nick + ", nick2=" + nick2 + ", gender=" + gender + ", weight=" + weight + ", enrollDate=" + enrollDate
-				+ ", modifyDate=" + modifyDate + ", quitYn=" + quitYn + ", editDate=" + editDate + "]";
+				+ ", modifyDate=" + modifyDate + ", quitYn=" + quitYn + ", editDate=" + editDate + ", title=" + title
+				+ ", content=" + content + "]";
 	}
+
+	
 	
 	
 }
