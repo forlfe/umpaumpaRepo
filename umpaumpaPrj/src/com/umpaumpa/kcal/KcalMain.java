@@ -17,7 +17,7 @@ public class KcalMain {
 			//선택한 값에 따라 동작
 			switch(input) {
 			case 1://오늘 소모 칼로리 확인
-				//new KcalCheck().Calla(); 
+				new KcalCheck().Calla(); 
 				break;
 			case 2: //이전 기록 조회
 				new KcalCheck().CheckKcal(); 

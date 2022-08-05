@@ -13,7 +13,7 @@ import com.umpaumpa.member.MemberVo;
 public class KcalCheck {
 	static Scanner sc = new Scanner(System.in);
 	
-public static void Calla(MemberVo data) {
+public static void Calla() {
 		
 		System.out.println("영법을 선택해주세요.\n1. 자유영(저속)\n2. 자유영(중속)\n3. 자유영(강속)\n4. 배영\n5. 평영\n6. 선헤엄\n7. 접영");
 		System.out.print(">>해당번호를 입력해주세요 : ");
@@ -22,7 +22,7 @@ public static void Calla(MemberVo data) {
 		System.out.print(">>운동시간을 입력해주세요(단위:분) : ");
 		int min = sc.nextInt();
 		
-		double weight = data.getWeight();
+		double weight =  Main.loginMember.getWeight();
 		double Kresult = 0;
 		if(num==1) {
 			Kresult  = (weight*0.089)*min; 
@@ -55,7 +55,7 @@ public int saveKcal(double Kresult, int min){
 	
 	int result = 0;
 	
-	if(input.equals("Y")) {
+	if(input.equals("Y")||input.equals("y")) {
 		//Kresult, min ,date를 ?,?,SYSDATE로 db에 저장하기
 		Connection conn= null;
 		PreparedStatement pstmt = null;
@@ -83,9 +83,11 @@ public int saveKcal(double Kresult, int min){
 			JDBCTemplate.close(conn);
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println("저장 완료! 이전화면으로 돌아갑니다.");
+		//++++++++++++++++++++++++이전화면으로 돌아가야한+++++
 		
-	}else {
-		System.out.println("이전 화면으로 돌아갑니다.");//main화면으로
+	}else if(input.equals("N")||input.equals("n")){
+		System.out.println("메인 화면으로 돌아갑니다.");//main화면으로
 		//+++++++++++이부분+++++++++++++//
 //		return;
 		

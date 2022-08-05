@@ -2,6 +2,8 @@ package com.umpaumpa.menu;
 
 import com.umpaumpa.main.Main;
 import com.umpaumpa.member.MemberController;
+import com.umpaumpa.swim.SwimController;
+import com.umpaumpa.team.TeamController;
 import com.umpaumpa.util.Inpututil;
 
 public class Menu {

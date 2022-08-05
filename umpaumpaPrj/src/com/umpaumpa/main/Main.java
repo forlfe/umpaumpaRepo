@@ -6,6 +6,8 @@ import com.umpaumpa.kcal.KcalMain;
 import com.umpaumpa.member.MemberController;
 import com.umpaumpa.member.MemberVo;
 import com.umpaumpa.menu.Menu;
+import com.umpaumpa.record.RecordController;
+import com.umpaumpa.teamjoin.TeamJoinController;
 
 public class Main {
 	
@@ -56,25 +58,25 @@ public class Main {
 				new MemberController().join(); 
 				break;
 			case 3:
-				//나의 운동기록
+				new RecordController().showList();
 				break;
 			case 4: 
 				new KcalMain().main(); 
 				break;
 			case 5: 
-				//팀가입하기
+				new TeamJoinController().join();
 				break;
 			case 6: 
 				//팀활동
 				break;
 			case 7: 
-				//자유게시판
+				new MemberController().community();
 				break;
 			case 8: 
-				//마이페이지
+				new MemberController().myPage(); 
 				break;
 			case 9: 
-				//관리자페이지
+				new MemberController().adminPage();
 				break;
 			case 0: 
 				//프로그램 종료
