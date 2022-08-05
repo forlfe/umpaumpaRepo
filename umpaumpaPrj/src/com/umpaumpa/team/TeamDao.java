@@ -111,7 +111,7 @@ public class TeamDao {
 		
 	}
 
-	public int insertTeam(String newTeamName,int capNo) {
+	public int insertTeam(String newTeamName) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -119,11 +119,10 @@ public class TeamDao {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="INSERT INTO TEAM(CODE, CAP, TEAM_NAME, STATUS, RECORD) VALUES (SEQ_TEAM_CODE.NEXTVAL,?, ?, 'Y', '0')";
+			String sql="INSERT INTO TEAM(CODE, TEAM_NAME, STATUS, RECORD) VALUES (SEQ_TEAM_CODE.NEXTVAL, ?, 'Y', '0')";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,capNo);
-			pstmt.setString(2,newTeamName);
+			pstmt.setString(1,newTeamName);
 			
 			
 			result = pstmt.executeUpdate();
@@ -188,7 +187,7 @@ public class TeamDao {
 		
 	}
 
-	public int deleteTeam(int teamCode) {
+	public int deleteTeam(String teamName) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -196,11 +195,11 @@ public class TeamDao {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM TEAM WHERE CODE = ?";
+			String sql="DELETE FROM TEAM WHERE TEAM_NAME = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1,teamCode);
+			pstmt.setString(1,teamName);
 			
 			
 			result = pstmt.executeUpdate();

@@ -2,8 +2,6 @@ package com.umpaumpa.menu;
 
 import com.umpaumpa.main.Main;
 import com.umpaumpa.member.MemberController;
-import com.umpaumpa.swim.SwimController;
-import com.umpaumpa.team.TeamController;
 import com.umpaumpa.util.Inpututil;
 
 public class Menu {
@@ -125,7 +123,7 @@ public int showMenu() {
 	System.out.println("2. 특정 팀 조회");
 	System.out.println("3. 팀 추가하기");
 	System.out.println("4. 팀 수정하기");
-	System.out.println("5. 팀 삭제하기");
+	System.out.println("2. 팀 삭제하기");
 	
 	TeamController tc = new TeamController();
 	

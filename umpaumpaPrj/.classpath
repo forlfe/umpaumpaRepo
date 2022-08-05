@@ -7,6 +7,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/dev/setup/libs/ojdbc8.jar"/>
-	<classpathentry kind="lib" path="D:/setup/libs/ojdbc8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -68,13 +68,13 @@ public class Main {
 				//팀활동
 				break;
 			case 7: 
-				new MemberController().community(); 
+				//자유게시판
 				break;
 			case 8: 
-				new MemberController().myPage();  
+				//마이페이지
 				break;
 			case 9: 
-				/new MemberController().adminPage(); 
+				//관리자페이지
 				break;
 			case 0: 
 				//프로그램 종료

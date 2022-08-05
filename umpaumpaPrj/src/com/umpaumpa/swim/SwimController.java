@@ -53,25 +53,19 @@ public void searchSfInfo() {
 		
 	}
 
-public void insertSf() {
+	public void insertSf() {
 		
-		System.out.println("추가하실 영법의 번호를 입력하세요.: ");
-		String sNo = Inpututil.sc.nextLine();
 		System.out.println("추가하실 영법을 입력하세요.: ");
 		String sName = Inpututil.sc.nextLine();
-		System.out.println("영법의 칼로리를 기재해 주세요,: ");
-		int sKcal = Inpututil.getint();
 		System.out.println("영법 묘사를 기재해 주세요.: ");
 		String description= Inpututil.sc.nextLine();
 		
 		
 		SwimDao sd = new SwimDao();
 		SwimVo vo = new SwimVo();
-		vo.setStrokeNo(sNo);
 		vo.setsName(sName);
-		vo.setsKcal(sKcal);
 		vo.setDescription(description);
-		int result = sd.insertFs(vo);
+		int result = sd.insertFs(sName, description);
 		
 		if(result == 1) {
 			System.out.println("영법 추가 완료하였습니다.");
@@ -88,19 +82,17 @@ public void insertSf() {
 	public void updateSf() {
 		
 		
-		System.out.println("수정하실 영법의 번호를 입력하세요.: ");
-		String sNo = Inpututil.sc.nextLine();
-		
-		System.out.println("수정하실 영법 묘사를 기재해 주세요.: ");
+		System.out.println("수정하실 영법을 입력하세요.: ");
+		String sName = Inpututil.sc.nextLine();
+		System.out.println("영법 묘사 수정본을 기재해 주세요.: ");
 		String description= Inpututil.sc.nextLine();
 		
 		
 		SwimDao sd = new SwimDao();
 		SwimVo vo = new SwimVo();
-		vo.setStrokeNo(sNo);
-		
+		vo.setsName(sName);
 		vo.setDescription(description);
-		int result = sd.updateSf(vo);
+		int result = sd.updateSf(sName, description);
 		
 		if(result == 1) {
 			System.out.println("영법 수정 완료하였습니다.");
@@ -118,14 +110,14 @@ public void insertSf() {
 	public void deleteSf() {
 		
 		System.out.println("삭제하실 영법을 입력하세요.: ");
-		String sNo = Inpututil.sc.nextLine();
+		String sName = Inpututil.sc.nextLine();
 		
 		
 		SwimDao sd = new SwimDao();
 		SwimVo vo = new SwimVo();
-		vo.setStrokeNo(sNo);
+		vo.setsName(sName);
 		
-		int result = sd.deleteSf(sNo);
+		int result = sd.deleteSf(sName);
 		
 		if(result == 1) {
 			System.out.println("영법 삭제 완료하였습니다.");

@@ -158,22 +158,13 @@ public class MemberController {
 		
 	}
 	public void memberSearchDe() {
-		
 		System.out.println("회원 번호를 입력하여 조회하세요.: ");
 		String no = Inpututil.sc.nextLine();
-		
-		MemberVo vo = new MemberDao().memberSearchDe(no);
 			
+		MemberVo vo= new MemberVo();
+		vo.setNo(no);
 		
-		System.out.println("------------- 회 원 정 보------------");
-		System.out.println("===================================");
-		System.out.print("회원번호: "+ vo.getNo()+" | ");
-		System.out.print("아이디: "+vo.getId()+" | ");
-		System.out.print("이름: "+vo.getName()+" | ");
-		System.out.print("닉네임: "+vo.getNick()+" | ");
-		System.out.print("등록날짜: "+vo.getEnrollDate()+" | ");
-		System.out.println("수정일시: "+vo.getEditDate());
-		
+		new MemberDao().memberSearchDe(no);
 			
 		
 	}
