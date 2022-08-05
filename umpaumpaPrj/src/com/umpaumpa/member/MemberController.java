@@ -9,7 +9,7 @@ import com.umpaumpa.util.Inpututil;
 public class MemberController {
 	
 	public void login() {
-		if(Main.loginmember!=null) {
+		if(Main.loginMember!=null) {
 			System.out.println("이미 로그인하셨습니다.");
 			return;
 		}												//로그인 시 로그인 화면 재진입 막음
