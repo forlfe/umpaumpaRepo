@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.umpaumpa.main.Main;
+import com.umpaumpa.util.Inpututil;
 
 public class RecordController {
 
@@ -45,7 +46,9 @@ public class RecordController {
 			
 			
 			}
-	}
+	}//showList
+	
+	
 	
 
 }
