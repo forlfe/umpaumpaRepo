@@ -10,24 +10,36 @@ public class RecordVo {
 	}
 	
 	
-	public RecordVo(int numrec, int num, Timestamp date, double kcal, int strokeNo, int min, String nick) {
-		
+
+
+
+	public RecordVo(int numrec, int num, Timestamp swimDate, double kcal, int strokeNo, int min, String nick,
+			String sName) {
+		super();
 		this.numrec = numrec;
 		this.num = num;
-		this.date = date;
+		this.swimDate = swimDate;
 		this.kcal = kcal;
 		this.strokeNo = strokeNo;
 		this.min = min;
 		this.nick = nick;
+		this.sName = sName;
 	}
+
+
+
+
+
+
+
 	private int numrec;
 	private int num;
-	private Timestamp date;
+	private Timestamp swimDate;
 	private double kcal;
 	private int strokeNo;
 	private int min;
 	private String nick;
-	
+	private String sName;
 	public int getNumrec() {
 		return numrec;
 	}
@@ -40,11 +52,11 @@ public class RecordVo {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public Timestamp getDate() {
-		return date;
+	public Timestamp getSwimDate() {
+		return swimDate;
 	}
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setSwimDate(Timestamp swimDate) {
+		this.swimDate = swimDate;
 	}
 	public double getKcal() {
 		return kcal;
@@ -70,11 +82,18 @@ public class RecordVo {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
+	public String getsName() {
+		return sName;
+	}
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
 	@Override
 	public String toString() {
-		return "RecordVo [numrec=" + numrec + ", num=" + num + ", date=" + date + ", kcal=" + kcal + ", strokeNo="
-				+ strokeNo + ", min=" + min + ", nick=" + nick + "]";
+		return "RecordVo [numrec=" + numrec + ", num=" + num + ", swimDate=" + swimDate + ", kcal=" + kcal
+				+ ", strokeNo=" + strokeNo + ", min=" + min + ", nick=" + nick + ", sName=" + sName + "]";
 	}
+	
 	
 	
 	
