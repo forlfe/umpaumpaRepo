@@ -45,8 +45,8 @@ public class MemberDao {
 	
 		public static MemberVo login(String inputid, String inputpwd) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "SELECT NUM, ID, NAME, NICK, WEIGHT, GENDER FROM JOIN WHERE ID=? AND PWD=? AND QUIT_YN='N'";
-		
+		String sql = "SELECT J.NUM, J.ID, J.NAME, J.NICK, J.WEIGHT, J.GENDER, T.TEAM_CODE,T.TEAMNAME FROM JOIN J JOIN TEAM_JOIN T ON J.NUM = T.MEMBER_NUM WHERE ID=? AND PWD=? AND QUIT_YN='N'";
+		  
 		Connection conn = JDBCTemplate.getConnection();
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -66,6 +66,8 @@ public class MemberDao {
 			String nick = rs.getString("NICK");
 			double weight = rs.getDouble("WEIGHT");
 			String gender = rs.getString("GENDER");
+			String teamCode = rs.getString("TEAM_CODE");
+			String teamName = rs.getString("TEAMNAME");
 			
 			vo = new MemberVo();
 			
@@ -75,6 +77,8 @@ public class MemberDao {
 			vo.setNick(nick);
 			vo.setWeight(weight);
 			vo.setGender(gender);
+			vo.setTeamCode(teamCode);
+			vo.setTeamName(teamName);
 		}
 		return vo;
 	}
@@ -327,5 +331,48 @@ public class MemberDao {
 			return result;
 			
 			
+		}
+		
+		public List<BoardVo> showList(Connection conn) throws Exception {
+			// SQL 준비
+			String sql = "SELECT C.POSTNUM, C.NUM2, C.WRITE_DATE, C.POST_DELETE, C.VIEWCNT, C.EDIT_DATE, C.TITLE, C.CONTENT,J.NAME FROM COMMUNITY C JOIN JOIN J ON J.NUM = C.NUM2 WHERE C.POST_DELETE = 'N' ORDER BY WRITE_DATE,POSTNUM";
+
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<BoardVo> BoardVoList = new ArrayList<BoardVo>();
+
+			try {
+				// SQL 담을 객체 준비
+				pstmt = conn.prepareStatement(sql);
+
+				// SQL 실행 및 결과 저장
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					int no = rs.getInt("POSTNUM");
+					String title = rs.getString("TITLE");
+					Timestamp editDate = rs.getTimestamp("EDIT_DATE");
+					String name = rs.getString("NAME");
+					String content = rs.getString("CONTENT");
+
+					BoardVo vo = new BoardVo();
+					vo.setPostNum(no);
+					vo.setTitle(title);
+					vo.setWriteDate(editDate);
+					vo.setName(name);
+					vo.setContent(content);
+					
+					BoardVoList.add(vo);
+
+				}
+
+			} finally {
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(pstmt);
+			}
+
+			// SQL 실행 결과 리턴
+
+			return BoardVoList;
 		}
 }
