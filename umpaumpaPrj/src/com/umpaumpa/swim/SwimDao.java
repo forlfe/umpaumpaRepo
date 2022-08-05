@@ -1,51 +1,43 @@
-package com.umpaumpa.team;
+package com.umpaumpa.swim;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.umpaumpa.common.JDBCTemplate;
 
-public class TeamDao {
+public class SwimDao {
 	
-		
-		//SQL 담을 객체
-		
-		
-	
-	public List<TeamVo> searchTeamInfo() {
+public List<SwimVo> searchSf() {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		ResultSet rs = null;
-		List<TeamVo> teamVoList = new ArrayList<TeamVo>();
+		List<SwimVo> swimVoList = new ArrayList<SwimVo>();
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="SELECT * FROM TEAM ";
+			String sql="SELECT * FROM STROKE_INFO ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
+			
 			while(rs.next()) {
-				int code = rs.getInt("CODE");
-				int num = rs.getInt("NUM");
-				String teamName = rs.getString("TEAM_NAME");
-				Timestamp tenrollDate = rs.getTimestamp("TENROLL_DATE");
-				int record = rs.getInt("RECORD");
+				String strokeNo = rs.getString("STROKE_NO");
+				String sName = rs.getString("S_NAME");
+				int sKcal = rs.getInt("S_KCAL");
+				String description = rs.getString("DESCRIPTION");
 				
-				TeamVo vo = new TeamVo();
-				vo.setCode(code);
-				vo.setCap(num);
-				vo.setTeamName(teamName);
-				vo.setTenrollDate(tenrollDate);
-				vo.setRecord(record);
+				SwimVo vo = new SwimVo();
+				vo.setStrokeNo(strokeNo);
+				vo.setsName(sName);
+				vo.setsKcal(sKcal);
+				vo.setDescription(description);
 				
-				teamVoList.add(vo);
+				swimVoList.add(vo);
 				
 			}
 		} catch (Exception e) {
@@ -56,43 +48,74 @@ public class TeamDao {
 			JDBCTemplate.close(rs);
 		}
 		
-		return teamVoList;
+		return swimVoList;
 		
+	}
+
+	public int insertFs(String sName, String description) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		int result = 0;
+		
+		try {
+			conn = JDBCTemplate.getConnection();
+			String sql="INSERT INTO STROKE_INFO(S_NAME,DESCRIPTION) VALUES (?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,sName);
+			pstmt.setString(2,description);
+			
+			result = pstmt.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			
+			
+		} catch (Exception e) {
+			JDBCTemplate.rollback(conn);
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 		
 		
 	}
 
-	public TeamVo searchTeamInfoDe(int code) {
-		
+	public SwimVo searchSfInfoDe(String strokeNo) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		ResultSet rs = null;
-		TeamVo vo = null;
+		SwimVo vo = null;
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="SELECT * FROM TEAM WHERE CODE = ? ";
+			String sql="SELECT * FROM STROKE_INFO WHERE STROKE_NO = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, code);
+			pstmt.setString(1, strokeNo);
 			
 			rs = pstmt.executeQuery();
 			
 			
 			if(rs.next()) {
+				String strokeNum = rs.getString("STROKE_NO");
+				String sName = rs.getString("S_NAME");
+				int sKcal = rs.getInt("S_KCAL");
+				String description = rs.getString("DESCRIPTION");
 				
-				
-				int code1 = rs.getInt("CODE");
-				String teamName = rs.getString("TEAM_NAME");
-				Timestamp tenrollDate = rs.getTimestamp("TENROLL_DATE");
-				int record = rs.getInt("RECORD");
-				
-				
-				vo = new TeamVo();
-				vo.setCode(code1);
-				vo.setTeamName(teamName);
-				vo.setTenrollDate(tenrollDate);
-				vo.setRecord(record);
+				vo = new SwimVo();
+				vo.setStrokeNo(strokeNum);
+				vo.setsName(sName);
+				vo.setsKcal(sKcal);
+				vo.setDescription(description);
 				
 				
 				
@@ -108,21 +131,20 @@ public class TeamDao {
 		
 		
 		return vo;
-		
 	}
 
-	public int insertTeam(String newTeamName) {
-		
+	public int updateSf(String sName, String description) {
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		int result = 0;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="INSERT INTO TEAM(CODE, TEAM_NAME, STATUS, RECORD) VALUES (SEQ_TEAM_CODE.NEXTVAL, ?, 'Y', '0')";
+			String sql="UPDATE STROKE_INFO SET DESCRIPTION = ? WHERE S_NAME = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,newTeamName);
+			pstmt.setString(1,description);
+			pstmt.setString(2,sName);
 			
 			
 			result = pstmt.executeUpdate();
@@ -144,24 +166,20 @@ public class TeamDao {
 		}
 		
 		return result;
-		
-		
-		
 	}
 
-	public int updateTeam(int code,String newTeamName) {
-		
+	public int deleteSf(String sName) {
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		int result = 0;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="UPDATE TEAM SET TEAM_NAME = ? WHERE CODE = ?";
+			String sql="DELETE FROM STROKE_INFO WHERE S_NAME = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,newTeamName);
-			pstmt.setInt(2,code);
+			
+			pstmt.setString(1,sName);
 			
 			
 			result = pstmt.executeUpdate();
@@ -183,46 +201,6 @@ public class TeamDao {
 		}
 		
 		return result;
-		
-		
 	}
-
-	public int deleteTeam(String teamName) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null; 
-		int result = 0;
-		
-		try {
-			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM TEAM WHERE TEAM_NAME = ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1,teamName);
-			
-			
-			result = pstmt.executeUpdate();
-			
-			if(result>0) {
-				JDBCTemplate.commit(conn);
-				
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
-			
-			
-		} catch (Exception e) {
-			JDBCTemplate.rollback(conn);
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-			JDBCTemplate.close(pstmt);
-		}
-		
-		return result;
-		
-	}
-	
 
 }
