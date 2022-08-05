@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.umpaumpa.main.Main;
+import com.umpaumpa.util.Inpututil;
 
 public class RecordController {
 
@@ -45,7 +46,17 @@ public class RecordController {
 			
 			
 			}
-	}
+	}//showList
+	
+	public int showPersonalRecord() {
+		System.out.println("");
+		System.out.print("ID를 다시 입력해주세요 :  ");
+		String idInput = Inpututil.sc.nextLine();
+		
+		return Inpututil.getint(); //> getInt가 아니라 스트링이 되어야 하는데?
+	}//
+	
+	//int no = new RecordController().showPersonalRecord();
 	
 
 }
