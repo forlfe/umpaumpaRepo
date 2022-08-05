@@ -7,7 +7,7 @@ public class KcalMenu {
 
 public int showMenu() {
 		
-		System.out.println("\n\n------ 메인메뉴 ------");
+		System.out.println("\n\n------ 소모 칼로리 확인 ------");
 		if(Main.loginMember != null) {
 			//로그인 O
 			System.out.println(Main.loginMember.getNick()+"님 환영합니다.");
@@ -15,8 +15,6 @@ public int showMenu() {
 			System.out.println("2.이전 소모 칼로리 조회");
 			System.out.println("3.첫 화면으로 돌아가기");//로그인 회원가입 있는 클래스로 돌아가야함
 		}
-			System.out.println("로그인을 해주세요.");
-			System.out.println("3.첫 화면으로 돌아가기");
 		
 		return Inpututil.getint();
 	}//method
