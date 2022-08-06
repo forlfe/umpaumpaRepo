@@ -205,22 +205,26 @@ public class MemberController {
 		String id = Inpututil.sc.nextLine();
 		System.out.println("수정하실 몸무게를 입력하세요.: ");
 		double newWeight = Inpututil.sc.nextDouble();
-
+		
+		
 		System.out.println("몸무게를 수정하시겠습니까?(Y/N)");
-
+		
 		String input = Inpututil.sc.nextLine();
-
+		
 		if (input.equalsIgnoreCase("y")) {
-
+			
 			MemberVo vo = new MemberVo();
 			vo.setId(id);
 			vo.setWeight(newWeight);
-
+			
 			int result = new MemberService().updateWeight(vo);
-
-		} else {
+		}else {
 			return;
 		}
+		
+
+
+		
 
 	}
 
