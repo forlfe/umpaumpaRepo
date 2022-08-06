@@ -6,21 +6,25 @@ import java.util.List;
 import com.umpaumpa.common.JDBCTemplate;
 
 public class TeamService {
+
 	
-	public List<TeamVo> TeamService() {
+	public TeamVo rank(int num) {
+		
 		Connection conn = null;
-		List<TeamVo> teamVoList = null;
+		TeamVo vo = null;
 		
 		try {
+			
 			conn = JDBCTemplate.getConnection();
-//			teamVoList = new TeamDao().rankCheck(conn);
+			vo = new TeamDao().showRank(conn, num);
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			JDBCTemplate.rollback(conn);
 		}finally {
 			JDBCTemplate.close(conn);
 		}
-		
-		return teamVoList;
+		return vo;
 	}
+	
 
 }

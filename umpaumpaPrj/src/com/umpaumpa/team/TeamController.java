@@ -3,63 +3,51 @@ package com.umpaumpa.team;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.umpaumpa.main.Main;
 import com.umpaumpa.teamjoin.TeamJoinVo;
 import com.umpaumpa.util.Inpututil;
 
 public class TeamController {
 	
-	public static int teamRank() {
+	//!!!!!!Menu 에 넣을 것!!!!!!
+//	public void teamShowRank() {
+//		System.out.println("   나의 팀 순위  ");
+//		System.out.println("==============");
+//		System.out.println("아래 보기 중 나의 팀 번호를 입력해주세요:D ");
+//		System.out.println("1. 포세이돈");
+//		System.out.println("2. 전현무");
+//		System.out.println("3. 네레우스");
+//		System.out.println();
+//		
+//		TeamController tc = new TeamController();
+//		
+//	}
+	
+	public void teamRank() {
 		
-		//팀 보기 번호 출력
-		System.out.println("------- 나의 팀 순위 보기 -------");
-		System.out.println("==============================");
-		System.out.println("아래 보기 중 나의 팀 번호를 입력해주세요:D ");
-		System.out.println("1. 포세이돈");
-		System.out.println("2. 전현무");
-		System.out.println("3. 네레우스");
-		System.out.println();
-		
-		//팀 번호 입력 받기
 		System.out.print("나의 팀 번호 : ");
 		int i = Inpututil.sc.nextInt();
 		
-		//팀 번호 재확인 받기
-		
 		if(i == 1) {
-			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 포세이돈");
-			System.out.print("Y / N : ");
-			String s1 = Inpututil.sc.nextLine();
-			
-			if(s1.equals("Y")) {
-				System.out.println("=== 나의 팀 순위는 ===");
-				//1. 포세이돈 팀 순위 출력
-//				new TeamDao().teamRank();
-			}
+			System.out.println("★★★ " +  i + ". 포세이돈 팀의 순위 ★★★");
 		}else if(i == 2) {
-			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 전현무");
-			System.out.print("Y / N : ");
-			String s1 = Inpututil.sc.nextLine();
-			
-			if(s1.equals("Y")) {
-				System.out.println("=== 나의 팀 순위는 ===");
-				//2. 전현무 팀 순위 출력
-				
-			}
+			System.out.println("★★★ " +  i + ". 전현무 팀의 순위 ★★★");
 		}else if(i ==3) {
-			System.out.println("입력하신 번호가 맞습니까? => " + i + ". 네레우스");
-			System.out.print("Y / N : ");
-			String s1 = Inpututil.sc.nextLine();
-			
-			if(s1.equals("Y")) {
-				System.out.println("=== 나의 팀 순위는 ===");
-				//3. 네레우스 팀 순위 출력
-				
-			}
+			System.out.println("★★★ " +  i + ". 네레우스 팀의 순위 ★★★");
 		}else {
 			System.out.println("잘못 입력하였습니다ㅠ");
+			return;
 		}
 		
-		return i;
+		String name = Main.loginMember.getName();
+//		String name = vo.getName();
+		int num = 0;
+		TeamVo result = new TeamService().rank(num);
+		
+		for(int n = 1; n < 100; n++) {
+//			System.out.println(n + "." + //여기다가 이름 가져오기!!// + "(" + "이름" + ")" + " | " + "운동기록 : " + "kcal");
+		}
+		
 		
 	}
 	public void searchTeamInfo() {
