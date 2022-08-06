@@ -57,7 +57,7 @@ public class TeamDao {
 		
 		
 	
-	public List<TeamVo> searchTeamInfo() {
+public List<TeamVo> searchTeamInfo() {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 

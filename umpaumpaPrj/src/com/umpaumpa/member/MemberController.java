@@ -334,7 +334,6 @@ public class MemberController {
 		}
 
 	}
-
 	public void showList() {
 		
 		Scanner sc = new Scanner(System.in);

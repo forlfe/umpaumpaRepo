@@ -176,7 +176,7 @@ public class MemberDao {
 			
 		}
 		
-		public List<MemberVo> memberSearchDe(String memberNo) {
+public List<MemberVo> memberSearchDe(String memberNo) {
 			
 			Connection conn = null;
 			PreparedStatement pstmt = null;
