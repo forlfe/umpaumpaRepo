@@ -10,7 +10,7 @@ public class Menu {
 	
 public int showMenu() {
 		
-		System.out.println("\n\n------ 메인메뉴 ------");
+		System.out.println("\n\n✦✦✦✦✦✦𝙈𝘼𝙄𝙉 𝙈𝙀𝙉𝙐✦✦✦✦✦✦");
 		
 		System.out.println("원하시는 기능의 번호를 입력해주세요.");
 		System.out.println("");
@@ -64,7 +64,7 @@ public int showMenu() {
 	
 	return Inpututil.getint();
 	
-}
+}//showAdminMenu
 	public void memberSearchMenu() {
 	
 	System.out.println("   회 원 관 리  ");
@@ -85,7 +85,7 @@ public int showMenu() {
 	}
 	
 	
-}
+}//memberSearchMenu
 
 	public void swimAdminMenu() {
 	System.out.println("   영 법 관 리  ");
@@ -115,7 +115,7 @@ public int showMenu() {
 		return;
 	}
 	
-}
+}//swimAdminMenu
 
 	public void teamAdminMenu() {
 	System.out.println("   팀 관 리  ");
@@ -144,6 +144,19 @@ public int showMenu() {
 		return;
 	}
 	
-}
+}//teamAdminMenu
+	
+	public void teamShowRank() {
+		System.out.println("   나의 팀 순위  ");
+		System.out.println("==============");
+		System.out.println("아래 보기 중 나의 팀 번호를 입력해주세요:D ");
+		System.out.println("1. 포세이돈");
+		System.out.println("2. 전현무");
+		System.out.println("3. 네레우스");
+		System.out.println();
+		
+		TeamController tc = new TeamController();
+		
+	}//teamShowRank
 
-}
+}//class
