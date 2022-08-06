@@ -177,7 +177,7 @@ public List<SwimVo> searchSf() {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM STROKE_INFO WHERE S_NAME = ?";
+			String sql="DELETE FROM STROKE_INFO WHERE STROKE_NO = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			

@@ -34,7 +34,7 @@ public class MemberController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("로그인 에러!");
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -200,6 +200,9 @@ public class MemberController {
 			System.out.println("로그인을 먼저 해주세요.");
 			return;
 		}
+		
+		System.out.println("아이디를 입력하세요.: ");
+		String id = Inpututil.sc.nextLine();
 		System.out.println("수정하실 몸무게를 입력하세요.: ");
 		double newWeight = Inpututil.sc.nextDouble();
 
@@ -207,10 +210,10 @@ public class MemberController {
 
 		String input = Inpututil.sc.nextLine();
 
-		if (input.equalsIgnoreCase("Y")) {
+		if (input.equalsIgnoreCase("y")) {
 
 			MemberVo vo = new MemberVo();
-			vo.setId(Main.loginMember.getId());
+			vo.setId(id);
 			vo.setWeight(newWeight);
 
 			int result = new MemberService().updateWeight(vo);
