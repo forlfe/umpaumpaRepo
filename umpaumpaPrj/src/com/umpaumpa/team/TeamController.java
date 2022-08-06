@@ -157,7 +157,7 @@ public class TeamController {
 		int result = sd.deleteTeam(teamName);
 		
 		if(result == 1) {
-			System.out.println("영법 삭제 완료하였습니다.");
+			System.out.println("팀 삭제 완료하였습니다.");
 			System.out.println("=======================================");
 			System.out.println();
 		}else {
