@@ -14,32 +14,45 @@ import com.umpaumpa.teamjoin.TeamJoinVo;
 public class TeamDao {
 	
 		
-	public static int teamRank (TeamVo vo, Connection conn) throws Exception {
+	public TeamVo showRank(Connection conn, int num) throws Exception {
 		
-		int result = 0;
-		conn = null;
+		String sql = "SELECT J.TEAM_CODE, J.TEAMNAME, R.KCAL FROM TEAM_JOIN J JOIN RECORD R ON J.MEMBER_NUM = R.NUM WHERE J.TEAM_CODE = ? ORDER BY R.KCAL DESC";
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		TeamVo vo = null;
 		
 		try {
-			conn = JDBCTemplate.getConnection();
-			String sql = "SELECT J.TEAM_CODE, J.TEAMNAME, R.KCAL FROM TEAM_JOIN J JOIN RECORD R ON J.MEMBER_NUM = R.NUM WHERE J.TEAM_CODE = ? ORDER BY R.KCAL DESC";
-			
-			//sql 담을 객체
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
 			
-			pstmt.setInt(1, vo.getCode());
+			rs = pstmt.executeQuery();
 			
-			result = pstmt.executeUpdate();
+			if(rs.next()) {
+				int code = rs.getInt("CODE");
+				int cap = rs.getInt("CAP");
+				String teamName = rs.getString("TEAM_NAME");
+				Timestamp tenrollDate = rs.getTimestamp("TENROLL_DATE");
+				String status = rs.getString("STATUS");
+				int record = rs.getInt("RECORD");
+				
+				vo = new TeamVo();
+				vo.setCode(code);
+				vo.setCap(cap);
+				vo.setTeamName(teamName);
+				vo.setTenrollDate(tenrollDate);
+				vo.setStatus(status);
+				vo.setRecord(record);
+			}
 			
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(conn);
 			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
 		}
 		
-		return result;
+		return vo;
 	}
 		
 		
