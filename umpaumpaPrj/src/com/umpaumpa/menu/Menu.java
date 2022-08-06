@@ -13,14 +13,13 @@ public int showMenu() {
 		System.out.println("\n\n------ 메인메뉴 ------");
 		
 		System.out.println("원하시는 기능의 번호를 입력해주세요.");
-		System.out.print(">> 해당 번호 입력 : ");
 		System.out.println("");
 		
 		if(Main.loginMember != null) {
 			//로그인 O
 			System.out.println(Main.loginMember.getNick()+"님 환영합니다.");
 			System.out.println("3.나의 운동기록");
-			System.out.println("4.소모칼로리 조회");
+			System.out.println("4.소모칼로리 계산");
 			System.out.println("5.팀가입하기");
 			System.out.println("6.팀활동");
 			System.out.println("7.자유게시판");

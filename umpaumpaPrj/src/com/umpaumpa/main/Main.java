@@ -2,7 +2,7 @@ package com.umpaumpa.main;
 
 import java.util.Scanner;
 
-import com.umpaumpa.kcal.KcalMain;
+import com.umpaumpa.kcal.KcalController;
 import com.umpaumpa.member.MemberController;
 import com.umpaumpa.member.MemberVo;
 import com.umpaumpa.menu.Menu;
@@ -13,7 +13,7 @@ public class Main {
 	
 	public static MemberVo loginMember;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -42,7 +42,6 @@ public class Main {
 				+ "⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠋⠉⠀⠀⠀⠀⠀⠀⠀⠈⠙⠋⠁⠀⠀⠀⠀⠀\r\n"
 				+ "⠀⠀⠀⠀⠀     ⠀안녕하세요+++음파음파+++입니다⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀원하시는 번호를 선택해주세요.⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 				+ "");
 		Menu menu = new Menu();
 		while(true) {
@@ -61,7 +60,7 @@ public class Main {
 				new RecordController().showList();
 				break;
 			case 4: 
-				new KcalMain().main(); 
+				new KcalController().Calla(); 
 				break;
 			case 5: 
 				new TeamJoinController().join();
