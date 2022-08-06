@@ -45,7 +45,7 @@ public class MemberDao {
 	
 		public static MemberVo login(String inputid, String inputpwd) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "SELECT J.NUM, J.ID, J.NAME, J.NICK, J.WEIGHT, J.GENDER, T.TEAM_CODE,T.TEAMNAME FROM JOIN J JOIN TEAM_JOIN T ON J.NUM = T.MEMBER_NUM WHERE ID=? AND PWD=? AND QUIT_YN='N'";
+		String sql = "SELECT NUM, ID, NAME, NICK, WEIGHT, GENDER FROM JOIN WHERE ID=? AND PWD=? AND QUIT_YN='N'";
 		  
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -66,8 +66,7 @@ public class MemberDao {
 			String nick = rs.getString("NICK");
 			int weight = rs.getInt("WEIGHT");
 			String gender = rs.getString("GENDER");
-			String teamCode = rs.getString("TEAM_CODE");
-			String teamName = rs.getString("TEAMNAME");
+			
 			
 			vo = new MemberVo();
 			
@@ -77,8 +76,7 @@ public class MemberDao {
 			vo.setNick(nick);
 			vo.setWeight(weight);
 			vo.setGender(gender);
-			vo.setTeamCode(teamCode);
-			vo.setTeamName(teamName);
+		
 		}
 		return vo;
 	}

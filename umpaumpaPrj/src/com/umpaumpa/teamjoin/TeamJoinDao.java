@@ -22,7 +22,7 @@ public class TeamJoinDao {
 
 		try {
 			// SQL 준비
-			String sql = "INSERT INTO TEAM_JOIN(KEY, MEMBER_NUM, TEAM_CODE, ENROLL_DATE, TEAM_QUIT_YN) VALUES (SEQ_KEY_NO.NEXTVAL,?,?, SYSDATE, 'N')";
+			String sql = "INSERT INTO TEAM_JOIN(KEY, MEMBER_NUM, TEAM_CODE, TEAMNAME,ENROLL_DATE, TEAM_QUIT_YN) VALUES (SEQ_KEY_NO.NEXTVAL,?,?, '포세이돈',SYSDATE, 'N')";
 
 			// SQL 담을 객체 만들기
 			pstmt = conn.prepareStatement(sql);
