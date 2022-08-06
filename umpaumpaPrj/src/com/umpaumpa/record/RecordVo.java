@@ -11,11 +11,9 @@ public class RecordVo {
 	
 	
 
-
-
 	public RecordVo(int numrec, int num, Timestamp swimDate, double kcal, int strokeNo, int min, String nick,
 			String sName) {
-		super();
+		
 		this.numrec = numrec;
 		this.num = num;
 		this.swimDate = swimDate;
@@ -25,10 +23,6 @@ public class RecordVo {
 		this.nick = nick;
 		this.sName = sName;
 	}
-
-
-
-
 
 
 
@@ -93,7 +87,6 @@ public class RecordVo {
 		return "RecordVo [numrec=" + numrec + ", num=" + num + ", swimDate=" + swimDate + ", kcal=" + kcal
 				+ ", strokeNo=" + strokeNo + ", min=" + min + ", nick=" + nick + ", sName=" + sName + "]";
 	}
-	
 	
 	
 	
