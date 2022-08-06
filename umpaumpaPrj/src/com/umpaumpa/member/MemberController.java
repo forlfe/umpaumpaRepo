@@ -40,7 +40,10 @@ public class MemberController {
 
 	public void join() {
 		System.out.println("회원가입~~~");
-
+		if (Main.loginMember != null) {
+			System.out.println("이미 로그인하셨습니다.");
+			return;
+		} // 로그인 시 회원가입 화면 재진입 막음
 		System.out.println("아이디 :");
 		String id = Inpututil.sc.nextLine();
 		System.out.println("비밀번호 : ");
@@ -55,6 +58,7 @@ public class MemberController {
 		double weight = Inpututil.sc.nextInt();
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
+		Inpututil.sc.nextLine();
 
 		MemberVo vo = new MemberVo();
 		vo.setId(id);
