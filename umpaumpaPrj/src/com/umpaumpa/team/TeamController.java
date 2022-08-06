@@ -39,7 +39,7 @@ public class TeamController {
 			return;
 		}
 		
-		String name = Main.loginMember.getName();
+//		String name = Main.loginMember.getName();
 //		String name = vo.getName();
 		int num = 0;
 		TeamVo result = new TeamService().rank(num);
