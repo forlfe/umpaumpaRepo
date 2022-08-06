@@ -55,7 +55,7 @@ public class MemberController {
 		System.out.println("닉네임 : ");
 		String nick = Inpututil.sc.nextLine();
 		System.out.println("몸무게 :");
-		double weight = Inpututil.sc.nextInt();
+		int weight = Inpututil.sc.nextInt();
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
 		Inpututil.sc.nextLine();
@@ -143,7 +143,7 @@ public class MemberController {
 			String pwd = temp.getPwd();
 			String name = temp.getName();
 			String nick = temp.getNick();
-			double weight = temp.getWeight();
+			int weight = temp.getWeight();
 			Timestamp enrollDate = temp.getEnrollDate();
 			String quitYn = temp.getQuitYn();
 			Timestamp editDate = temp.getEditDate();
@@ -195,7 +195,7 @@ public class MemberController {
 			return;
 		}
 		System.out.println("수정하실 몸무게를 입력하세요.: ");
-		double newWeight = Inpututil.sc.nextDouble();
+		int newWeight = Inpututil.getint();
 
 		System.out.println("몸무게를 수정하시겠습니까?(Y/N)");
 

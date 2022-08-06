@@ -15,7 +15,7 @@ public class MemberVo {
 
 
 	public MemberVo(String no, String id, String pwd, String pwd2, String pwd3, String name, String adminId,
-			String adminPwd, String adminName, String nick, String nick2, String gender, double weight,
+			String adminPwd, String adminName, String nick, String nick2, String gender, int weight,
 			Timestamp enrollDate, Timestamp modifyDate, String quitYn, Timestamp editDate, String title, String content,
 			String teamCode, String teamName) {
 		super();
@@ -59,7 +59,7 @@ public class MemberVo {
 	private String nick;
 	private String nick2;
 	private String gender;
-	private double weight;
+	private int weight;
 	private Timestamp enrollDate;
 	private Timestamp modifyDate;
 	private String quitYn;
@@ -193,11 +193,11 @@ public class MemberVo {
 		this.gender = gender;
 	}
 
-	public double getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 

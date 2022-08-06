@@ -64,7 +64,7 @@ public class MemberDao {
 			String id = rs.getString("ID");
 			String name = rs.getString("NAME");
 			String nick = rs.getString("NICK");
-			double weight = rs.getDouble("WEIGHT");
+			int weight = rs.getInt("WEIGHT");
 			String gender = rs.getString("GENDER");
 			String teamCode = rs.getString("TEAM_CODE");
 			String teamName = rs.getString("TEAMNAME");
@@ -135,7 +135,7 @@ public class MemberDao {
 					String pwd = rs.getString("PWD");
 					String name = rs.getString("NAME");
 					String nick = rs.getString("NICK");
-					double weight = rs.getDouble("WEIGHT");
+					int weight = rs.getInt("WEIGHT");
 					String gender = rs.getString("GENDER");
 					Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
 					String quitYn = rs.getString("QUIT_YN");
@@ -282,7 +282,7 @@ public class MemberDao {
 			
 		}
 		
-		public int updateWeight(String id, double newWeight, Connection conn) throws Exception {
+		public int updateWeight(String id, int newWeight, Connection conn) throws Exception {
 			PreparedStatement pstmt = null;
 			
 			int result = 0;
@@ -293,7 +293,7 @@ public class MemberDao {
 				String sql = "UPDATE JOIN SET WEIGHT = ? WHERE ID = ?";
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setDouble(1, newWeight);
+				pstmt.setInt(1, newWeight);
 				pstmt.setString(2, id);
 				
 				result = pstmt.executeUpdate();
