@@ -310,7 +310,7 @@ public MemberVo memberSearchDe(String memberNo) {
 			PreparedStatement pstmt = null;
 			
 			try {
-				String sql = "INSERT INTO COMMUNITY(POSTNUM,WRITE_DATE,TITLE,CONTENT) VALUES (?,SYSDATE,?,?)";
+				String sql = "INSERT INTO COMMUNITY(POSTNUM,NUM2,WRITE_DATE,POST_DELETE,VIEWCNT,TITLE,CONTENT) VALUES (SEQ_POST_NO.NEXTVAL,?,SYSDATE,'N',SEQ_VIEW_NO.NEXTVAL,?,?)";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, vo.getNo());
