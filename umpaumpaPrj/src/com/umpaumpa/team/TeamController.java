@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.umpaumpa.main.Main;
+import com.umpaumpa.menu.Menu;
 import com.umpaumpa.teamjoin.TeamJoinDao;
 import com.umpaumpa.teamjoin.TeamJoinVo;
 import com.umpaumpa.util.Inpututil;
@@ -17,16 +18,20 @@ public class TeamController {
 			return;
 		}
 		
+		new Menu().teamShowRank();
+		
 		System.out.print("나의 팀 번호 : ");
-		int teamCode = Inpututil.sc.nextInt();
+		int teamCode = Inpututil.getint();
+		
 		
 		String nick = Main.loginMember.getNick();
 		String name = Main.loginMember.getName();
 		
 		TeamVo vo = new TeamDao().showRank(teamCode);
 		
-		System.out.println("★★★ " + vo.getCode() + ". " + vo.getTeamName() + " 팀의 순위 ★★★" );
-		System.out.println(nick + "(" + name + ")");
+		System.out.println("★★★ " + vo.getCode() + ". " + vo.getTeamName() + " 팀의 최고기록 ★★★" );
+		System.out.println("현재 1등 : " + nick + "(" + name + ")");
+		System.out.println("메인 메뉴로 돌아갑니다.");
 		
 	}
 	
