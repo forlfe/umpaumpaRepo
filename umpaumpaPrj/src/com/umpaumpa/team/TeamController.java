@@ -4,52 +4,41 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.umpaumpa.main.Main;
+import com.umpaumpa.teamjoin.TeamJoinDao;
 import com.umpaumpa.teamjoin.TeamJoinVo;
 import com.umpaumpa.util.Inpututil;
 
 public class TeamController {
 	
-	//!!!!!!Menu 에 넣을 것!!!!!!
-//	public void teamShowRank() {
-//		System.out.println("   나의 팀 순위  ");
-//		System.out.println("==============");
-//		System.out.println("아래 보기 중 나의 팀 번호를 입력해주세요:D ");
-//		System.out.println("1. 포세이돈");
-//		System.out.println("2. 전현무");
-//		System.out.println("3. 네레우스");
-//		System.out.println();
-//		
-//		TeamController tc = new TeamController();
-//		
-//	}
-	
 	public void teamRank() {
 		
-		System.out.print("나의 팀 번호 : ");
-		int i = Inpututil.sc.nextInt();
-		
-		if(i == 1) {
-			System.out.println("★★★ " +  i + ". 포세이돈 팀의 순위 ★★★");
-		}else if(i == 2) {
-			System.out.println("★★★ " +  i + ". 전현무 팀의 순위 ★★★");
-		}else if(i ==3) {
-			System.out.println("★★★ " +  i + ". 네레우스 팀의 순위 ★★★");
-		}else {
-			System.out.println("잘못 입력하였습니다ㅠ");
+		if(Main.loginMember == null) {
+			System.out.println("로그인을 먼저 해주세요");
 			return;
 		}
 		
-//		String name = Main.loginMember.getName();
-//		String name = vo.getName();
-		int num = 0;
-		TeamVo result = new TeamService().rank(num);
+		System.out.print("나의 팀 번호 : ");
+		int teamCode = Inpututil.sc.nextInt();
 		
-		for(int n = 1; n < 100; n++) {
-//			System.out.println(n + "." + //여기다가 이름 가져오기!!// + "(" + "이름" + ")" + " | " + "운동기록 : " + "kcal");
-		}
+		String name = Main.loginMember.getName();
+		String id = Main.loginMember.getId();
 		
+		TeamVo vo = new TeamDao().showRank(teamCode);
+		
+//		int n = Inpututil.sc.nextInt();
+//		int[] ranklist = new int[n];
+//		int rank = 1;
+//		
+//		for(int i = 1; i < n; i++) {
+//			ranklist[i] = Inpututil.sc.nextInt();
+//		}
+		
+		System.out.println("★★★ " + vo.getCode() + ". " + vo.getTeamName() + "팀의 순위 ★★★" );
+//		System.out.println(ranklist + ". " + name + "(" + id + ")" + " | ");
 		
 	}
+	
+	
 	public void searchTeamInfo() {
 		System.out.println("전체 팀 정보를 조회합니다.");
 		

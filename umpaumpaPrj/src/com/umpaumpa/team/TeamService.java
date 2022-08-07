@@ -8,7 +8,7 @@ import com.umpaumpa.common.JDBCTemplate;
 public class TeamService {
 
 	
-	public TeamVo rank(int num) {
+	public TeamVo teamRank(int num) {
 		
 		Connection conn = null;
 		TeamVo vo = null;
@@ -16,10 +16,8 @@ public class TeamService {
 		try {
 			
 			conn = JDBCTemplate.getConnection();
-			vo = new TeamDao().showRank(conn, num);
-			
+			vo = new TeamDao().showRank(num);
 		} catch (Exception e) {
-			JDBCTemplate.rollback(conn);
 		}finally {
 			JDBCTemplate.close(conn);
 		}
