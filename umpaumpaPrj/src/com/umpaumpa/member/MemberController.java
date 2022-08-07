@@ -12,6 +12,7 @@ import com.umpaumpa.util.Inpututil;
 
 public class MemberController {
 
+	// 로그인
 	public void login() {
 		if (Main.loginMember != null) {
 			System.out.println("이미 로그인하셨습니다.");
@@ -20,10 +21,13 @@ public class MemberController {
 		System.out.println("로그인~~~");
 		MemberVo imfor = null;
 
+		//아이디, 비밀번호 입력
 		System.out.println("아이디 : ");
 		String id = Inpututil.sc.nextLine();
 		System.out.println("비밀번호 : ");
 		String pwd = Inpututil.sc.nextLine();
+		
+		//입력값을 MemberDao의 login함수로 집어넣은 값을 참조변수 vo로 반환
 		try {
 			MemberVo vo = MemberDao.login(id, pwd);
 			imfor = MemberDao.login(id, pwd);
@@ -31,19 +35,25 @@ public class MemberController {
 				System.out.println("로그인 성공!");
 				Main.loginMember = imfor; // 로그인 시 해당 정보를 메인으로 전송
 			}
+		//예외 처리(에러 출력)
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("로그인 에러!");
 			// e.printStackTrace();
 		}
 	}
-
+	
+	//회원가입
 	public void join() {
 		System.out.println("회원가입~~~");
 		if (Main.loginMember != null) {
 			System.out.println("이미 로그인하셨습니다.");
 			return;
 		} // 로그인 시 회원가입 화면 재진입 막음
+		MemberVo vo = null;
+		
+		while(vo==null)
+		{
 		System.out.println("아이디 :");
 		String id = Inpututil.sc.nextLine();
 		System.out.println("비밀번호 : ");
@@ -55,12 +65,18 @@ public class MemberController {
 		System.out.println("닉네임 : ");
 		String nick = Inpututil.sc.nextLine();
 		System.out.println("몸무게 :");
-		int weight = Inpututil.sc.nextInt();
+		int weight = 0;
+		//몸무게에 문자열값 입력 시 에러구문 출력
+		try {
+		weight = Inpututil.sc.nextInt();
+		} catch(Exception e) {
+			System.out.println("몸무게 값이 정확하지 않습니다");
+		}
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
 		Inpututil.sc.nextLine();
 
-		MemberVo vo = new MemberVo();
+		vo = new MemberVo();
 		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setPwd2(pwd2);
@@ -68,7 +84,7 @@ public class MemberController {
 		vo.setNick(nick);
 		vo.setWeight(weight);
 		vo.setGender(gender);
-
+		}
 		Connection conn = null;
 		int result = 0;
 
