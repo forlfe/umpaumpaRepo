@@ -159,10 +159,28 @@ public class MemberController {
 		System.out.println("회원 번호를 입력하여 조회하세요.: ");
 		String no = Inpututil.sc.nextLine();
 
-		MemberVo vo = new MemberVo();
-		vo.setNo(no);
+	
+		MemberVo vo = new MemberDao().memberSearchDe(no);
+		
+		String num = vo.getNo();
+		String id = vo.getId();
+		String name = vo.getName();
+		String nick = vo.getNick();
+		Timestamp enrollDate = vo.getEnrollDate();
+		String quitYn = vo.getQuitYn();
+		Timestamp editDate = vo.getEditDate();
+		
+		System.out.println("------------ 회 원 정 보------------");
+		System.out.println("==================================");
 
-		new MemberDao().memberSearchDe(no);
+		
+
+		System.out.println(num + " | " + id + " | "+ name + " | " + nick +  "\n | "
+					+ enrollDate + " | " + quitYn + " | " + editDate);
+
+	
+
+		
 
 	}
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.umpaumpa.common.JDBCTemplate;
+import com.umpaumpa.util.Inpututil;
 
 public class SwimDao {
 	
@@ -52,7 +53,7 @@ public List<SwimVo> searchSf() {
 		
 	}
 
-	public int insertFs(String sName, String description) {
+	public int insertFs(SwimVo vo) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -60,11 +61,13 @@ public List<SwimVo> searchSf() {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="INSERT INTO STROKE_INFO(S_NAME,DESCRIPTION) VALUES (?,?)";
+			String sql="INSERT INTO STROKE_INFO(STROKE_NO,S_NAME,S_KCAL,DESCRIPTION) VALUES (?,?,?,?)";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,sName);
-			pstmt.setString(2,description);
+			pstmt.setString(1,vo.getStrokeNo());
+			pstmt.setString(2,vo.getsName());
+			pstmt.setInt(3,vo.getsKcal());
+			pstmt.setString(4,vo.getDescription());
 			
 			result = pstmt.executeUpdate();
 			
@@ -133,18 +136,18 @@ public List<SwimVo> searchSf() {
 		return vo;
 	}
 
-	public int updateSf(String sName, String description) {
+	public int updateSf(String sNo, String description) {
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		int result = 0;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="UPDATE STROKE_INFO SET DESCRIPTION = ? WHERE S_NAME = ?";
+			String sql="UPDATE STROKE_INFO SET DESCRIPTION = ? WHERE STROKE_NO = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,description);
-			pstmt.setString(2,sName);
+			pstmt.setString(2,sNo);
 			
 			
 			result = pstmt.executeUpdate();
@@ -168,18 +171,18 @@ public List<SwimVo> searchSf() {
 		return result;
 	}
 
-	public int deleteSf(String sName) {
+	public int deleteSf(String sNo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		int result = 0;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM STROKE_INFO WHERE S_NAME = ?";
+			String sql="DELETE FROM STROKE_INFO WHERE STROKE_NO = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1,sName);
+			pstmt.setString(1,sNo);
 			
 			
 			result = pstmt.executeUpdate();

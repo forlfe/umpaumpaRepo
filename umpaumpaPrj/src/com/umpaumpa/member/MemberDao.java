@@ -174,12 +174,12 @@ public class MemberDao {
 			
 		}
 		
-public List<MemberVo> memberSearchDe(String memberNo) {
+		public MemberVo memberSearchDe(String memberNo) {
 			
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			List<MemberVo> memberVoList = new ArrayList<MemberVo>();
+			MemberVo vo = null;
 			try {
 				conn = JDBCTemplate.getConnection();
 				String sql="SELECT * FROM JOIN WHERE NUM = ? ";
@@ -191,26 +191,26 @@ public List<MemberVo> memberSearchDe(String memberNo) {
 				rs = pstmt.executeQuery();
 				
 				
-				while(rs.next()) {
+				if(rs.next()) {
 					String no = rs.getString("NUM");
 					String id = rs.getString("ID");
-					String pwd = rs.getString("PWD");
 					String nick = rs.getString("NICK");
+					String name = rs.getString("NAME");
 					Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
-					Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+					Timestamp editDate = rs.getTimestamp("EDIT_DATE");
 					String quitYn = rs.getString("QUIT_YN");
 					
 					
-					MemberVo vo = new MemberVo();
+					vo = new MemberVo();
 					vo.setNo(no);
 					vo.setId(id);
-					vo.setPwd(pwd);
 					vo.setNick(nick);
+					vo.setName(name);					
 					vo.setEnrollDate(enrollDate);
-					vo.setModifyDate(modifyDate);
+					vo.setEditDate(editDate);
 					vo.setQuitYn(quitYn);
 					
-					memberVoList.add(vo);
+					
 					
 				}
 			} catch (Exception e) {
@@ -221,7 +221,7 @@ public List<MemberVo> memberSearchDe(String memberNo) {
 				JDBCTemplate.close(rs);
 			}
 			
-			return memberVoList;
+			return vo;
 			
 			
 		}
