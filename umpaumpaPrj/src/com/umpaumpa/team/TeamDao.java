@@ -154,7 +154,7 @@ public List<TeamVo> searchTeamInfo() {
 		
 	}
 
-	public int insertTeam(String newTeamName) {
+public int insertTeam(int capNo, String newTeamName,int record) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -162,10 +162,12 @@ public List<TeamVo> searchTeamInfo() {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="INSERT INTO TEAM(CODE, TEAM_NAME, STATUS, RECORD) VALUES (SEQ_TEAM_CODE.NEXTVAL, ?, 'Y', '0')";
+			String sql="INSERT INTO TEAM(CODE, CAP, TEAM_NAME, STATUS, RECORD) VALUES (SEQ_TEAM_CODE.NEXTVAL, ?, ?, 'Y',?)";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,newTeamName);
+			pstmt.setInt(1,capNo);
+			pstmt.setString(2,newTeamName);
+			pstmt.setInt(3,record);
 			
 			
 			result = pstmt.executeUpdate();
@@ -230,7 +232,7 @@ public List<TeamVo> searchTeamInfo() {
 		
 	}
 
-	public int deleteTeam(String teamName) {
+	public int deleteTeam(String teamCode) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -238,11 +240,11 @@ public List<TeamVo> searchTeamInfo() {
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM TEAM WHERE TEAM_NAME = ?";
+			String sql="DELETE FROM TEAM WHERE CODE = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1,teamName);
+			pstmt.setString(1,teamCode);
 			
 			
 			result = pstmt.executeUpdate();

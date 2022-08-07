@@ -52,155 +52,156 @@ public List<SwimVo> searchSf() {
 		
 	}
 
-	public int insertFs(String sName, String description) {
+public int insertFs(SwimVo vo) {
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null; 
+	int result = 0;
+	
+	try {
+		conn = JDBCTemplate.getConnection();
+		String sql="INSERT INTO STROKE_INFO(STROKE_NO,S_NAME,S_KCAL,DESCRIPTION) VALUES (?,?,?,?)";
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null; 
-		int result = 0;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1,vo.getStrokeNo());
+		pstmt.setString(2,vo.getsName());
+		pstmt.setInt(3,vo.getsKcal());
+		pstmt.setString(4,vo.getDescription());
 		
-		try {
-			conn = JDBCTemplate.getConnection();
-			String sql="INSERT INTO STROKE_INFO(S_NAME,DESCRIPTION) VALUES (?,?)";
+		result = pstmt.executeUpdate();
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,sName);
-			pstmt.setString(2,description);
-			
-			result = pstmt.executeUpdate();
-			
-			if(result>0) {
-				JDBCTemplate.commit(conn);
-				
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
-			
-			
-		} catch (Exception e) {
+		}else {
 			JDBCTemplate.rollback(conn);
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-			JDBCTemplate.close(pstmt);
-		}
-		
-		return result;
-		
-		
-	}
-
-	public SwimVo searchSfInfoDe(String strokeNo) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null; 
-		ResultSet rs = null;
-		SwimVo vo = null;
-		try {
-			conn = JDBCTemplate.getConnection();
-			String sql="SELECT * FROM STROKE_INFO WHERE STROKE_NO = ? ";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, strokeNo);
-			
-			rs = pstmt.executeQuery();
-			
-			
-			if(rs.next()) {
-				String strokeNum = rs.getString("STROKE_NO");
-				String sName = rs.getString("S_NAME");
-				int sKcal = rs.getInt("S_KCAL");
-				String description = rs.getString("DESCRIPTION");
-				
-				vo = new SwimVo();
-				vo.setStrokeNo(strokeNum);
-				vo.setsName(sName);
-				vo.setsKcal(sKcal);
-				vo.setDescription(description);
-				
-				
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rs);
 		}
 		
 		
-		
-		return vo;
+	} catch (Exception e) {
+		JDBCTemplate.rollback(conn);
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(conn);
+		JDBCTemplate.close(pstmt);
 	}
+	
+	return result;
+	
+	
+}
 
-	public int updateSf(String sName, String description) {
-		Connection conn = null;
-		PreparedStatement pstmt = null; 
-		int result = 0;
+public SwimVo searchSfInfoDe(String strokeNo) {
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null; 
+	ResultSet rs = null;
+	SwimVo vo = null;
+	try {
+		conn = JDBCTemplate.getConnection();
+		String sql="SELECT * FROM STROKE_INFO WHERE STROKE_NO = ? ";
 		
-		try {
-			conn = JDBCTemplate.getConnection();
-			String sql="UPDATE STROKE_INFO SET DESCRIPTION = ? WHERE S_NAME = ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, strokeNo);
+		
+		rs = pstmt.executeQuery();
+		
+		
+		if(rs.next()) {
+			String strokeNum = rs.getString("STROKE_NO");
+			String sName = rs.getString("S_NAME");
+			int sKcal = rs.getInt("S_KCAL");
+			String description = rs.getString("DESCRIPTION");
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,description);
-			pstmt.setString(2,sName);
+			vo = new SwimVo();
+			vo.setStrokeNo(strokeNum);
+			vo.setsName(sName);
+			vo.setsKcal(sKcal);
+			vo.setDescription(description);
 			
 			
-			result = pstmt.executeUpdate();
 			
-			if(result>0) {
-				JDBCTemplate.commit(conn);
-				
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(conn);
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rs);
+	}
+	
+	
+	
+	return vo;
+}
+
+public int updateSf(String sNo, String description) {
+	Connection conn = null;
+	PreparedStatement pstmt = null; 
+	int result = 0;
+	
+	try {
+		conn = JDBCTemplate.getConnection();
+		String sql="UPDATE STROKE_INFO SET DESCRIPTION = ? WHERE STROKE_NO = ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1,description);
+		pstmt.setString(2,sNo);
+		
+		
+		result = pstmt.executeUpdate();
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
 			
-			
-		} catch (Exception e) {
+		}else {
 			JDBCTemplate.rollback(conn);
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-			JDBCTemplate.close(pstmt);
 		}
 		
-		return result;
-	}
-
-	public int deleteSf(String sName) {
-		Connection conn = null;
-		PreparedStatement pstmt = null; 
-		int result = 0;
 		
-		try {
-			conn = JDBCTemplate.getConnection();
-			String sql="DELETE FROM STROKE_INFO WHERE S_NAME = ?";
+	} catch (Exception e) {
+		JDBCTemplate.rollback(conn);
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(conn);
+		JDBCTemplate.close(pstmt);
+	}
+	
+	return result;
+}
+
+public int deleteSf(String sNo) {
+	Connection conn = null;
+	PreparedStatement pstmt = null; 
+	int result = 0;
+	
+	try {
+		conn = JDBCTemplate.getConnection();
+		String sql="DELETE FROM STROKE_INFO WHERE STROKE_NO = ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1,sNo);
+		
+		
+		result = pstmt.executeUpdate();
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
 			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1,sName);
-			
-			
-			result = pstmt.executeUpdate();
-			
-			if(result>0) {
-				JDBCTemplate.commit(conn);
-				
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
-			
-			
-		} catch (Exception e) {
+		}else {
 			JDBCTemplate.rollback(conn);
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-			JDBCTemplate.close(pstmt);
 		}
 		
-		return result;
+		
+	} catch (Exception e) {
+		JDBCTemplate.rollback(conn);
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(conn);
+		JDBCTemplate.close(pstmt);
 	}
-
+	
+	return result;
+}
 }
