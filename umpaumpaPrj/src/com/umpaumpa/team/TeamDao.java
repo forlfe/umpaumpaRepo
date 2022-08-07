@@ -14,17 +14,19 @@ import com.umpaumpa.teamjoin.TeamJoinVo;
 public class TeamDao {
 	
 		
-	public TeamVo showRank(Connection conn, int num) throws Exception {
+	public TeamVo showRank(int teamCode) {
 		
-		String sql = "SELECT J.TEAM_CODE, J.TEAMNAME, R.KCAL FROM TEAM_JOIN J JOIN RECORD R ON J.MEMBER_NUM = R.NUM WHERE J.TEAM_CODE = ? ORDER BY R.KCAL DESC";
-		
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		TeamVo vo = null;
 		
 		try {
+			conn = JDBCTemplate.getConnection();
+			String sql = "SELECT J.TEAM_CODE, J.TEAMNAME, R.KCAL FROM TEAM_JOIN J JOIN RECORD R ON J.MEMBER_NUM = R.NUM WHERE J.TEAM_CODE = ? ORDER BY R.KCAL DESC";
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, teamCode);
 			
 			rs = pstmt.executeQuery();
 			
@@ -48,6 +50,7 @@ public class TeamDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
+			JDBCTemplate.close(conn);
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rs);
 		}
