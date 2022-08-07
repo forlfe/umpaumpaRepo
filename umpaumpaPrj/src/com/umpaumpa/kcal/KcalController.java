@@ -46,8 +46,7 @@ public class KcalController {
 			System.out.println("숫자를 다시 입력해주세요."); return;
 		}
 		System.out.println("");
-		System.out.println(Main.loginMember.getNick()+"님의 몸무게 :"+Main.loginMember.getWeight()+"kg 에 따른");
-		System.out.println("오늘의 소모 칼로리는 "+Kresult+"입니다.");
+		System.out.println(">>>>>오늘의 소모 칼로리는 "+Kresult+"입니다.<<<<<");
 		System.out.println("");
 		System.out.println("해당 기록을 저장하시겠습니까? Y / N ");
 		System.out.print(">> Y 또는 N을 입력해주세요 : ");
@@ -57,7 +56,7 @@ public class KcalController {
 		
 		if(result == 1) {
 			System.out.println("---------------------------");
-			System.out.println("| 저장 성공 ! 메인으로 돌아갑니다.|");
+			System.out.println("| 저장 성공 ! 메인으로 돌아갑니다.   ");
 			System.out.println("---------------------------");
 		}else {
 			System.out.println("[ERROR :"+result+"] 저장 실패 ...");
