@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.umpaumpa.common.JDBCTemplate;
+import com.umpaumpa.record.RecordVo;
 import com.umpaumpa.teamjoin.TeamJoinVo;
 
 public class TeamDao {
@@ -19,7 +20,9 @@ public class TeamDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		TeamVo vo = null;
+		TeamVo vo = new TeamVo();
+		RecordVo rv = new RecordVo();
+		TeamJoinVo tv = new TeamJoinVo();
 		
 		try {
 			conn = JDBCTemplate.getConnection();
@@ -31,20 +34,14 @@ public class TeamDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int code = rs.getInt("CODE");
-				int cap = rs.getInt("CAP");
-				String teamName = rs.getString("TEAM_NAME");
-				Timestamp tenrollDate = rs.getTimestamp("TENROLL_DATE");
-				String status = rs.getString("STATUS");
-				int record = rs.getInt("RECORD");
+				int code = rs.getInt("TEAM_CODE");
+				String teamName = rs.getString("TEAMNAME");
+				int kcal = rs.getInt("KCAL");
 				
 				vo = new TeamVo();
 				vo.setCode(code);
-				vo.setCap(cap);
 				vo.setTeamName(teamName);
-				vo.setTenrollDate(tenrollDate);
-				vo.setStatus(status);
-				vo.setRecord(record);
+				rv.setKcal(kcal);
 			}
 			
 		}catch(Exception e) {
