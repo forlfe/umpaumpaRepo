@@ -84,18 +84,27 @@ public class TeamController {
 		
 	}
 
-	public void insertTeam() {
+public void insertTeam() {
 		
+		
+		System.out.println("팀장 번호를 입력하세요.: ");
+		int capNo = Inpututil.getint();
 		System.out.println("추가하실 팀이름을 입력하세요.: ");
 		String newTeamName = Inpututil.sc.nextLine();
+		System.out.println("최고 기록을 입력하세요.: ");
+		int record = Inpututil.getint();
+		
 		
 		
 		
 		TeamDao sd = new TeamDao();
 		TeamVo vo = new TeamVo();
+		vo.setCap(capNo);
 		vo.setTeamName(newTeamName);
+		vo.setRecord(record);
 		
-		int result = sd.insertTeam(newTeamName);
+		
+		int result = sd.insertTeam(capNo,newTeamName,record);
 		
 		if(result == 1) {
 			System.out.println("팀 추가 완료하였습니다.");
@@ -135,15 +144,15 @@ public class TeamController {
 
 	public void deleteTeam() {
 		
-		System.out.println("삭제할 팀을 입력하세요.: ");
-		String teamName = Inpututil.sc.nextLine();
+		System.out.println("삭제할 팀번호를 입력하세요.: ");
+		String teamCode = Inpututil.sc.nextLine();
 		
 		
 		TeamDao sd = new TeamDao();
 		TeamVo vo = new TeamVo();
-		vo.setTeamName(teamName);
+		vo.setTeamName(teamCode);
 		
-		int result = sd.deleteTeam(teamName);
+		int result = sd.deleteTeam(teamCode);
 		
 		if(result == 1) {
 			System.out.println("팀 삭제 완료하였습니다.");
@@ -156,7 +165,6 @@ public class TeamController {
 		
 		
 	}
-	
 	
 
 }
