@@ -20,21 +20,13 @@ public class TeamController {
 		System.out.print("나의 팀 번호 : ");
 		int teamCode = Inpututil.sc.nextInt();
 		
+		String nick = Main.loginMember.getNick();
 		String name = Main.loginMember.getName();
-		String id = Main.loginMember.getId();
 		
 		TeamVo vo = new TeamDao().showRank(teamCode);
 		
-//		int n = Inpututil.sc.nextInt();
-//		int[] ranklist = new int[n];
-//		int rank = 1;
-//		
-//		for(int i = 1; i < n; i++) {
-//			ranklist[i] = Inpututil.sc.nextInt();
-//		}
-		
-		System.out.println("★★★ " + vo.getCode() + ". " + vo.getTeamName() + "팀의 순위 ★★★" );
-//		System.out.println(ranklist + ". " + name + "(" + id + ")" + " | ");
+		System.out.println("★★★ " + vo.getCode() + ". " + vo.getTeamName() + " 팀의 순위 ★★★" );
+		System.out.println(nick + "(" + name + ")");
 		
 	}
 	
