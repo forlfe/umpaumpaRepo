@@ -44,10 +44,6 @@ public class MemberController {
 			System.out.println("이미 로그인하셨습니다.");
 			return;
 		} // 로그인 시 회원가입 화면 재진입 막음
-		MemberVo vo = null;
-		
-		while(vo==null)
-		{
 		System.out.println("아이디 :");
 		String id = Inpututil.sc.nextLine();
 		System.out.println("비밀번호 : ");
@@ -59,17 +55,12 @@ public class MemberController {
 		System.out.println("닉네임 : ");
 		String nick = Inpututil.sc.nextLine();
 		System.out.println("몸무게 :");
-		int weight = 0;
-		try {
-		weight = Inpututil.sc.nextInt();
-		} catch(Exception e) {
-			System.out.println("몸무게 값이 정확하지 않습니다");
-		}
+		int weight = Inpututil.sc.nextInt();
 		System.out.println("성별 : ");
 		String gender = Inpututil.sc.nextLine();
 		Inpututil.sc.nextLine();
 
-		vo = new MemberVo();
+		MemberVo vo = new MemberVo();
 		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setPwd2(pwd2);
@@ -77,7 +68,7 @@ public class MemberController {
 		vo.setNick(nick);
 		vo.setWeight(weight);
 		vo.setGender(gender);
-		}
+
 		Connection conn = null;
 		int result = 0;
 
