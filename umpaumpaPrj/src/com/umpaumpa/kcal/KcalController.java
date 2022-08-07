@@ -55,7 +55,10 @@ public class KcalController {
 		int result = new KcalService().Calla(Kresult, min,input,num);
 		
 		if(result == 1) {
-			System.out.println(" 저장 성공 ! 메인으로 돌아갑니다.");
+			System.out.println("");
+			System.out.println("---------------------------");
+			System.out.println("| 저장 성공 ! 메인으로 돌아갑니다.|");
+			System.out.println("---------------------------");
 		}else {
 			System.out.println("[ERROR :"+result+"] 저장 실패 ...");
 		}

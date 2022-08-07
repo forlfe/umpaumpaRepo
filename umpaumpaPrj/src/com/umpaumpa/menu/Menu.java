@@ -158,5 +158,13 @@ public int showMenu() {
 		TeamController tc = new TeamController();
 		
 	}//teamShowRank
+	
+	/*운동 기록 상세조회*/
+	   public int showRecordDetailMenu() {
+	      System.out.println("");
+	      System.out.print("상세조회할 운동 번호를 입력하세요 (0번을 누르면 메인으로 이동합니다) :  ");
+	      
+	      return Inpututil.getint();
+	   }//showRecordDetailMenu
 
 }//class
