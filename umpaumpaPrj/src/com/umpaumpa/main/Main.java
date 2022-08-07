@@ -7,6 +7,7 @@ import com.umpaumpa.member.MemberController;
 import com.umpaumpa.member.MemberVo;
 import com.umpaumpa.menu.Menu;
 import com.umpaumpa.record.RecordController;
+import com.umpaumpa.team.TeamController;
 import com.umpaumpa.teamjoin.TeamJoinController;
 
 public class Main {
@@ -66,7 +67,7 @@ public class Main {
 				new TeamJoinController().join();
 				break;
 			case 6: 
-				//팀활동
+				new TeamController().teamRank(); 
 				break;
 			case 7: 
 				new MemberController().community();
